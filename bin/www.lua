@@ -1,10 +1,7 @@
 local start_time = ngx.now()
 
-
-status, result = pcall(function () require "../app" end)
--- 模拟长时间lua执行
-ngx.sleep(1) --为什么放到app.lua中会报错
-
+local entry_point = assert(loadfile("./app.lua"))
+local status, result = pcall(entry_point)
 local lua_time = ngx.now() - start_time
 
 if not status then
