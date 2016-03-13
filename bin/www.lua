@@ -6,16 +6,19 @@ local function record_time()
 end
 
 local app = require 'app'
-local action = app.routes.get_current_action()
+-- local action = app.router.get_current_action()
+--
+-- if not action then
+--   record_time()
+--   ngx.exit(ngx.HTTP_NOT_FOUND)
+-- end
 
-if not action then
-  record_time()
-  ngx.exit(ngx.HTTP_NOT_FOUND)
-end
+local status, result = pcall(app.run)
 
-local status, result = pcall(action)
-
-if not status then
+if status then
+  --ngx.var.abc = result
+  return result
+else
   ngx.log(ngx.ERR, '出错了.......................') --TODO 去掉
   ngx.log(ngx.ERR, result)
   record_time()

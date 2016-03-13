@@ -1,7 +1,8 @@
 local M = {}
 
 function M.eat () 
-  ngx.say 'cat eat'
+  --ngx.say 'cat eat'
+  return 123
 end
 
 function M.run () 
