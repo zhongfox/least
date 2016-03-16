@@ -1,3 +1,4 @@
+--for debug
 function puts(info)
   ngx.log(ngx.ERR, info)
 end

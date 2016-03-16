@@ -7,7 +7,6 @@ local RedisClient = {}
 
 function RedisClient:new(redis_config)
   local client = {}
-  --client.redis_config = redis_config
   client.redis_config = redis_config
   setmetatable(client, self)
   self.__index = self
@@ -21,14 +20,14 @@ function RedisClient:run(cmd, ...)
   local client, err = rc:connect(self.redis_config)
 
   if not client then
-    ngx.say("failed to connect: ", err)
+    ngx.log(ngx.ERR, "failed to connect: " .. err)
     return
   end
 
   local res, err = client[cmd](client, ...)
 
   if err then
-    ngx.say("failed to run redis cmd: ", err)
+    ngx.log(ngx.ERR, "failed to run redis cmd: " .. err)
     return
   end
 
@@ -36,7 +35,7 @@ function RedisClient:run(cmd, ...)
   --with 10 seconds max idle time
   local ok, err = client:set_keepalive(10000, 10)
   if not ok then
-    ngx.say("failed to set keepalive: ", err)
+    ngx.log(ngx.ERR, "failed to set keepalive:" .. err)
     return
   end
 
