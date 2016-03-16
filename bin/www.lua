@@ -1,28 +1,13 @@
 local start_time = ngx.now()
-local function record_time()
-  local lua_time = ngx.now() - start_time
-  --ngx.say(lua_time) --TODO 记入日志
-  --ngx.var.lua_time = lua_time
-end
-
 local app = require 'app'
--- local action = app.router.get_current_action()
---
--- if not action then
---   record_time()
---   ngx.exit(ngx.HTTP_NOT_FOUND)
--- end
 
-local status, result = pcall(app.run)
+local status, result = pcall(app.run, start_time)
 
 if status then
-  --ngx.var.abc = result
+  app.record_time(start_time)
   return result
 else
-  ngx.log(ngx.ERR, '出错了.......................') --TODO 去掉
-  ngx.log(ngx.ERR, result)
-  record_time()
+  ngx.log(ngx.ERR, tostring(result))
+  app.record_time(start_time)
   ngx.exit(ngx.HTTP_INTERNAL_SERVER_ERROR)
 end
-
-record_time()

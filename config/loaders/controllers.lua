@@ -1,5 +1,5 @@
 local controllers = {}
-local files = io.popen("ls app/controllers/*.lua")
+local files = io.popen("ls app/controllers/*.lua") --TODO
 
 for controller_path in files:lines() do 
   controller_name = controller_path:match('app/controllers/(.+).lua')
