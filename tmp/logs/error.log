@@ -1,0 +1,5 @@
+2016/03/16 18:08:14 [error] 27164#0: *1 failed to load external Lua file "./tmp/bin/www.lua": cannot open ./tmp/bin/www.lua: No such file or directory, client: 127.0.0.1, server: , request: "GET /redis_test HTTP/1.1", host: "127.0.0.1:8001"
+2016/03/16 18:12:12 [notice] 27367#0: signal process started
+2016/03/16 18:12:18 [error] 27368#0: *2 [lua] boot.lua:10: record_time(): 耗时: 0.052000045776367, client: 127.0.0.1, server: , request: "GET /redis_test HTTP/1.1", host: "127.0.0.1:8001"
+2016/03/16 18:12:24 [error] 27368#0: *4 [lua] boot.lua:3: puts(): http://www.abc.com, client: 127.0.0.1, server: , request: "GET /check_referer_test HTTP/1.1", host: "127.0.0.1:8001", referrer: "http://www.abc.com"
+2016/03/16 18:12:24 [error] 27368#0: *4 [lua] boot.lua:10: record_time(): 耗时: 0, client: 127.0.0.1, server: , request: "GET /check_referer_test HTTP/1.1", host: "127.0.0.1:8001", referrer: "http://www.abc.com"

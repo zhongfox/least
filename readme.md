@@ -3,8 +3,8 @@
 
 ### 启动/重启
 
-* 启动 `/opt/openresty1_5_12/nginx/sbin/nginx -p ./ -c config/nginx.conf`
-* 重启 `/opt/openresty1_5_12/nginx/sbin/nginx -p ./ -c config/nginx.conf -s reload`
+* 启动 `sudo /opt/openresty1_5_12/nginx/sbin/nginx -p ./tmp  -c ../config/nginx.conf`
+* 重启 `sudo /opt/openresty1_5_12/nginx/sbin/nginx -p ./tmp  -c ../config/nginx.conf -s reload`
 
 ### HTTP 动词测试
 
