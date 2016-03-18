@@ -1,3 +1,5 @@
+print('lua app starting...')
+
 app = {}
 require 'config/boot'
 

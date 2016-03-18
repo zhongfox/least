@@ -6,7 +6,6 @@ function M:current_user ()
 end
 
 function M.check_referer ()
-  puts(ngx.var.http_referer)
   if ngx.var.http_referer == 'http://www.abc.com' then
     return true
   else

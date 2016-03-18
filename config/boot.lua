@@ -1,8 +1,3 @@
---for debug
-function puts(info)
-  ngx.log(ngx.ERR, info)
-end
-
 function app.record_time(start_time)
   local lua_time = ngx.now() - start_time
   --ngx.say(lua_time) --TODO 记入日志
