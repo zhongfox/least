@@ -1,12 +1,7 @@
-app_root = '/Users/zhonghua/code/lua/least/'
-app_name = 'least' --TODO
-
-function require_from_root(relative_path_from_root)
-  return require(app_root .. relative_path_from_root)
-end
+app_name = 'least'
 
 local start_time = ngx.now()
-local app = require_from_root 'app'
+local app = require(app_name .. '.app')
 
 local status, result = pcall(app.run, start_time)
 

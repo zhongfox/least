@@ -1,5 +1,8 @@
-app.root = app_root
-app.settings = app.require 'config/loaders/settings'
+app.root = ngx.var.lua_root .. app_name .. '/'
+
+function app.require(relative_path_from_root)
+  return require(app_name .. '.' .. relative_path_from_root)
+end
 
 function app.record_time(start_time)
   local lua_time = ngx.now() - start_time
@@ -26,5 +29,7 @@ function app.run(start_time)
   end
   return result
 end
+
+app.settings = app.require 'config/loaders/settings'
 
 --TODO 其他app需要完善的地方, 都写在此文件
