@@ -1,11 +1,12 @@
 print('lua app starting...')
 
 app = {}
-require 'config/boot'
+app.require = require_from_root
+app.require 'config/boot'
 
-app.controllers = require 'config/loaders/controllers'
-app.router      = require 'config/loaders/router'
-app.redis       = require 'config/loaders/redis'
+app.controllers = app.require 'config/loaders/controllers'
+app.router      = app.require 'config/loaders/router'
+app.redis       = app.require 'config/loaders/redis'
 
-require 'config/routes'
+app.require 'config/routes'
 return app
