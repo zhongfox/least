@@ -1,4 +1,5 @@
 app_root = '/Users/zhonghua/code/lua/least/'
+app_name = 'least' --TODO
 
 function require_from_root(relative_path_from_root)
   return require(app_root .. relative_path_from_root)

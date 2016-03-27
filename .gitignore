@@ -6,17 +6,9 @@
 *.js.map
 
 *.rdb
-config/settings.local.js
-config/settings.local.json
-config/monitor.local.json
-config/imago.local.js
-config/config.json
-/newrelic_agent.log
-node_modules/
+config/settings_local.lua
 /*temp/*
 tmp/*
-/npm-debug.log
 logs/*
 !.gitkeep
 !.gitignore
-pm2.json

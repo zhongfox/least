@@ -1,4 +1,5 @@
 app.root = app_root
+app.settings = app.require 'config/loaders/settings'
 
 function app.record_time(start_time)
   local lua_time = ngx.now() - start_time
