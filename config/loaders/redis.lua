@@ -4,12 +4,12 @@ local resty_redis = require "resty.redis"
 
 
 local RedisClient = {}
+local mt = { __index = RedisClient }
 
 function RedisClient:new(redis_config)
   local client = {}
   client.redis_config = redis_config
-  setmetatable(client, self)
-  self.__index = self
+  setmetatable(client, mt)
   return client
 end
 
