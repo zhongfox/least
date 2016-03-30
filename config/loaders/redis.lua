@@ -43,14 +43,10 @@ function RedisClient:run(cmd, ...)
 end
 
 
-clients.master = RedisClient:new{ip='127.0.0.1', port=6379}
+clients.master = RedisClient:new{ip=app.settings.ip, port=app.settings.port}
 clients.sb = RedisClient:new{
-  url = "sentinel://m6381:m/0",
-  sentinels = {
-    { host = "127.0.0.1", port = "26381" },
-    { host = "127.0.0.1", port = "26382" },
-    { host = "127.0.0.1", port = "26383" }
-  }
+  url = 'sentinel://' .. app.settings.redis.sb.master_name .. ':m/0',
+  sentinels = app.settings.redis.sb.sentinels
 }
 
 
