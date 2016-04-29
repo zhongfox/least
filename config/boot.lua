@@ -1,17 +1,19 @@
-app.root = ngx.var.lua_root .. app_name .. '/'
+print('lua app ' .. app.name .. ' booting...')
 
-function app.require(relative_path_from_root)
-  return require(app_name .. '.' .. relative_path_from_root)
+app.root = ngx.var.lua_root .. app.name .. '/'
+
+app.require = function(relative_path_from_root)
+  return require(app.name .. '.' .. relative_path_from_root)
 end
 
-function app.record_time(start_time)
+app.record_time = function(start_time)
   local lua_time = ngx.now() - start_time
   --ngx.say(lua_time) --TODO 记入日志
   --ngx.var.lua_time = lua_time
   ngx.log(ngx.ERR, '耗时: ' .. tostring(lua_time))
 end
 
-function app.run(start_time)
+app.run = function (start_time)
   local start_time = ngx.now()
   local actions = app.router.match(ngx.var.uri)
 
@@ -30,6 +32,11 @@ function app.run(start_time)
   return result
 end
 
-app.settings = app.require 'config/loaders/settings'
+app.settings    = app.require 'config/loaders/settings'
+app.controllers = app.require 'config.loaders.controllers'
+app.router      = app.require 'config.loaders.router'
+app.redis       = app.require 'config.loaders.redis'
 
---TODO 其他app需要完善的地方, 都写在此文件
+app.require 'config.routes'
+
+app.booted = true

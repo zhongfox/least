@@ -1,7 +1,11 @@
-app_name = 'least'
-
 local start_time = ngx.now()
-local app = require(app_name .. '.app')
+local app_name = 'least' --TODO 各项目不同
+
+app = require(app_name .. '.app')
+if (not app.booted) then
+  app.name = app_name
+  require(app_name .. '.config.boot')
+end
 
 local status, result = pcall(app.run, start_time)
 

@@ -42,7 +42,7 @@ end
 function Router.match(uri)
   for _, router in ipairs(routes) do
     if (router.method == 'ANY' or router.method == ngx.var.request_method) and
-      string.match(uri, router.route) then
+      ngx.re.match(uri, router.route) then
       return router.actions
     end
   end
